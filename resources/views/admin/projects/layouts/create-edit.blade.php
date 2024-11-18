@@ -41,6 +41,29 @@
                     @enderror
                 </div>
 
+                <div class="mb-3 ">
+                    <label for="project-technologies" class="form-label">Technologies:</label>
+                    @foreach ( $technologies as $technology )
+                        <div class="form-check">
+                            <input type="checkbox" name="technologies[]" id="project-technologies" class="form-check-input" value="{{ $technology->id }}"
+                                    @checked(in_array($technology->id, old("technologies", $project->technologies->pluck("id")->toArray())))
+                                >
+                            <label type="checkbox" name="technologies[]" id="project-technologies" class="form-check-label">
+                                {{ $technology->name  }}
+                            </label>
+                        </div>
+                    @endforeach
+
+
+                    @error("technologies")
+                        @include("partials.single-name-error-message")
+                    @enderror
+
+                    @error("technologies.*")
+                        @include("partials.single-name-error-message")
+                    @enderror
+                </div>
+
                 <div class="mb-3">
                     <label for="project-date" class="form-label">Project date:</label>
                     <input type="text" name="date" id="project-date" class="form-control" value="{{ old("date", $project->date) }}">

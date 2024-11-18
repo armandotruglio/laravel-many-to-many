@@ -28,6 +28,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Title</th>
                             <th scope="col">Type</th>
+                            <th scope="col">Technologies</th>
                             <th scope="col">Date</th>
                         </tr>
                     </thead>
@@ -46,6 +47,15 @@
                                 @else
                                     No type
                                 @endif
+                            </td>
+                            <td>
+                                @forelse ($project->technologies as $technology)
+                                    <div class="badge text-bg-primary">
+                                        {{ $technology->name }}
+                                    </div>
+                                @empty
+                                    No technologies used
+                                @endforelse
                             </td>
                             <td>
                                 {{ $project->date }}
