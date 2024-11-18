@@ -31,6 +31,7 @@ class UpdateProjectRequest extends FormRequest
             "description" => [ "required", "string", "min:15"],
             "date" => ["required", "date"],
             "type_id" => ["required", "numeric", "integer", "exists:types,id"],
+            "technologies" => ["array", "exists:technologies,id"],
         ];
     }
 }
