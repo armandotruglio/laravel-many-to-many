@@ -11,6 +11,13 @@
     <div class="row">
         <div class="col-12 text-center">
             <div class="card p-3">
+                @if ($project->image)
+                <div class="card-top">
+                    <div class="card-image">
+                        <img src="{{ asset("/storage/" . $project->image) }}" alt="{{ $project->title }}">
+                    </div>
+                </div>
+                @endif
                 <div class="card-title">
                     <div class="span"> {{ $project->title }} </div>
                 </div>

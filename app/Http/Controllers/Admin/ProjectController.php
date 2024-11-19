@@ -8,6 +8,7 @@ use App\Models\Technology;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 
@@ -48,7 +49,13 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
 
-        $data["user_id"] = Auth::id();
+        if ($request->hasFile("image")){
+            $filePath = Storage::disk("public")->put("img/projects/", $request->image);
+            $data["image"] = $filePath;
+        }
+        else{
+            $data["image"] = NULL;
+        }
 
         $project = Project::create($data);
 
@@ -87,6 +94,15 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $data = $request->validated();
+
+        if ($request->hasFile("image")){
+            if ($project->image){
+                Storage::disk("public")->delete($project->image);
+            }
+
+            $filePath = Storage::disk("public")->put("img/projects/", $request->image);
+            $data["image"] = $filePath;
+        }
 
         $project->update($data);
 

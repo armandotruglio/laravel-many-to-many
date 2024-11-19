@@ -65,6 +65,15 @@
                 </div>
 
                 <div class="mb-3">
+                    <input type="file" name="image" id="project-image" class="form-control">
+
+                    @error("image")
+                        @include("partials.single-name-error-message")
+                    @enderror
+                </div>
+
+
+                <div class="mb-3">
                     <label for="project-date" class="form-label">Project date:</label>
                     <input type="text" name="date" id="project-date" class="form-control" value="{{ old("date", $project->date) }}">
                     @error("date")
