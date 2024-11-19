@@ -66,7 +66,7 @@ class ProjectController extends Controller
         }
 
         return redirect()->route("admin.projects.index")
-            ->with('message', "Post $project->title has been created successfully!")
+            ->with('message', "Project $project->title has been created successfully!")
             ->with('alert-class', "success");
     }
 
@@ -113,7 +113,7 @@ class ProjectController extends Controller
         }
 
         return redirect()->route("admin.projects.index")
-            ->with('message', "Post $project->title has been updated successfully!")
+            ->with('message', "Project $project->title has been updated successfully!")
             ->with('alert-class', "primary");
     }
 
